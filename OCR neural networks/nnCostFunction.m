@@ -62,25 +62,23 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
+%expand y into matrix
+y_matrix = eye(num_labels)(y,:);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+%Perform the forward propagation
+X;
+a1 = [ones(size(X, 1), 1) X];
+z2 = a1 * Theta1';
+a2 = sigmoid(z2);
+a2 = [ones(size(a2, 1), 1) a2];
+z3 = a2 * Theta2';
+a3 = sigmoid(z3);
+h = a3;
+J = (sum(sum(- (y_matrix .* log(h)) - ((1 - y_matrix) .*  log(1 - h))))) / m;
 % -------------------------------------------------------------
+% Cost Regularization
+regularization_term = (lambda / (2 * m)) * ((sum(sum(Theta1(:,2:end).^2))) + (sum(sum(Theta2(:,2:end).^2))));
+J = (J + regularization_term);
 
 % =========================================================================
 
