@@ -23,6 +23,15 @@ h = X * theta;
 error = h - y;
 error_squared = error .^ 2;
 J = sum(error_squared) / (2 * m);
+grad = (X' * error) / m;
+% cost regularization
+theta(1) = 0;
+cost_regularization = (sum(theta.^2)) / (2 * m);
+J += cost_regularization;
+% gradient regularization
+grad_regularization = theta * (lambda / m);
+grad += grad_regularization;
+
 
 % =========================================================================
 
