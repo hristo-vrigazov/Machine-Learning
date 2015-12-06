@@ -22,12 +22,10 @@ sigma2 = zeros(n, 1);
 %
 
 
+mu = 1/m * sum(X);
 
-
-
-
-
-
+% note: saw this idea from dipanjanS
+sigma2 = 1/m * sum((X - repmat(mu, m, 1)).^2);
 
 
 % =============================================================
